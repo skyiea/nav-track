@@ -1,50 +1,51 @@
-var http    = require('http');
-var mkdirp  = require('mkdirp');
+'use strict';
 
-var DATA_HOST = 'celestrak.com';
+const http    = require('http');
+const mkdirp  = require('mkdirp');
+
+const DATA_HOST = 'celestrak.com';
 
 module.exports = function updateTLE() { // load all Navigation Satellite Systems TLE data
-    var success = false;
+    let success = false;
 
-    http.get({
-        host: DATA_HOST
-    }, function () { // if connection is OK
-        var i, curr_name, req,
-            fs      = require('fs'),
-            DIR     = 'tle/',
-            EXT     = '.txt',
-            PROTOCOL= 'http://',
-            TLE_PATH= '/NORAD/elements/',
-            PATH    = PROTOCOL + DATA_HOST + TLE_PATH,
-            NAMES   = [ // available GNSS data in TLE format
-                'beidou',
-                'galileo',
-                'glo-ops',
-                'gps-ops',
-                'musson',
-                'nnss',
-                'sbas'
-            ];
+    http.get({ host: DATA_HOST },  () => { // if connection is OK
+        const fs        = require('fs');
 
-        console.log('Update TLE data. Time: ', new Date().toLocaleTimeString(), new Date().toLocaleDateString());
+        const DIR       = 'tle/';
+        const EXT       = '.txt';
+        const PROTOCOL  = 'http://';
+        const TLE_PATH  = '/NORAD/elements/';
+        const PATH      = PROTOCOL + DATA_HOST + TLE_PATH;
 
-        mkdirp(DIR, function(err) {
+        const NAMES = [ // available GNSS data in TLE format
+            'beidou',
+            'galileo',
+            'glo-ops',
+            'gps-ops',
+            'musson',
+            'nnss',
+            'sbas'
+        ];
+
+        mkdirp(DIR, (err) => {
             if (err) {
                 console.log('Can\'t ensure %s directory existence', DIR);
             } else {
-                for (i = 0; curr_name = NAMES[i]; i++) {
-                    (function (name) { // need to use closure in case that http.get request is asynchronous
-                        req = http.get(PATH + name + EXT, function (resp) {
+                for (let currName of NAMES) {
+                    ((name) => { // need to use closure in case that http.get request is asynchronous
+                        http.get(PATH + name + EXT, (resp) => {
                             resp.pipe(fs.createWriteStream(DIR + name + EXT)); // write
                         });
-                    }(curr_name));
+                    })(currName);
                 }
+
+                console.log('Update TLE data. Time: %s %s', new Date().toLocaleTimeString(), new Date().toLocaleDateString());
 
                 success = true;
             }
         });
 
-    }).on('error', function () {
+    }).on('error', () => {
         !success && // error callback fires (after some delay) even if success callback was fired previously
             console.log('No connection to TLE Data server. Existed TLE data will be used instead.');
     });

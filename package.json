@@ -6,7 +6,8 @@
   "main": "backend/server.js",
   "private": true,
   "scripts": {
-    "start": "node backend/server.js"
+    "start": "node backend/server.js",
+    "nodemon": "nodemon backend/server.js --watch backend"
   },
   "repository": {
     "type": "git",
@@ -27,5 +28,8 @@
     "connect": "^2.11.2",
     "mkdirp": "^0.5.1",
     "serve-static": "^1.10.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.1"
   }
 }
