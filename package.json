@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Navigation satellites tracking in real-time",
   "author": "Sergiy skye Murygin",
+  "main": "backend/server.js",
   "private": true,
   "scripts": {
     "start": "node backend/server.js"
