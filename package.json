@@ -1,0 +1,29 @@
+{
+  "name": "nav-track",
+  "version": "1.0.0",
+  "description": "Navigation satellites tracking in real-time",
+  "main": "server.js",
+  "dependencies": {
+    "connect": "^2.11.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skyiea/nav-track.git"
+  },
+  "keywords": [
+    "GPS",
+    "GLONASS",
+    "navigation",
+    "satellite"
+  ],
+  "author": "Sergiy skye Murygin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skyiea/nav-track/issues"
+  },
+  "homepage": "https://github.com/skyiea/nav-track#readme"
+}

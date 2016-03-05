@@ -1,0 +1,389 @@
+html, body {
+    height:  100%;
+}
+body {
+    background-color: black;
+    overflow: hidden;
+    -webkit-user-select: none;
+    font-family: Calibri, Tahoma;
+    font-size: 16px;
+}
+* {
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+a {
+    color: #47BEFF;
+    text-decoration: none
+}
+#loader {
+    position: absolute;
+    display: -webkit-flex;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 2em;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0 10%;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+    border: none;
+    background-color: rgba(0, 0, 0, .85);
+    z-index: 100;
+}
+#interface {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: white;
+    pointer-events: none;
+}
+#interface > * {
+    position: absolute;
+    background-color: rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    border: 1px solid grey;
+    cursor: pointer;
+    pointer-events: all;
+}
+#interface .button {
+    width: 5em;
+    height: 5em;
+    background-image: url(../images/sprite.png);
+    background-repeat: no-repeat;
+    background-size: 5em;
+}
+#interface .header {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.3em;
+}
+#interface .popup {
+    box-sizing: border-box;
+    padding: 0.3em 0.6em 0.6em;
+}
+#interface #sat-menu,
+#interface #map-menu,
+#interface #player-menu,
+#interface #pointer-menu,
+#interface #date-menu,
+#interface #sat-info,
+#interface #pointer-info,
+#interface #message,
+#interface #app-info {
+    display: none;
+}
+#interface #sat-menu,
+#interface #map-menu,
+#interface #player-menu,
+#interface #pointer-menu {
+    left: 5em;
+    border-left: none;
+}
+#interface #message {
+    padding: 2px 6px;
+    pointer-events: none;
+}
+#interface #real-date {
+    right: 15em;
+    width: 2em;
+    height: 2em;
+    border-right: none;
+    background-image: url(../images/sprite.png);
+    background-position: 0 -48em;
+    background-size: 2em;
+}
+#interface #real-date:active {
+    background-position: 0 -50em;
+}
+#interface #show-date-menu {
+    width: 15em;
+    height: 2em;
+    padding: 0.4em 0.5em;
+    text-align: center;
+}
+#interface #show-date-menu:active,
+#interface #show-date-menu.checked {
+    color: #47BEFF;
+}
+#interface #show-date-menu #now-date {
+    font-family: monospace;
+    pointer-events: none;
+}
+#interface #bl-panel,
+#interface #br-panel {
+    bottom: 0;
+    height: 5em;
+    border-bottom: none;
+}
+#interface #tl-panel,
+#interface #bl-panel {
+    left: 0;
+    border-left: none;
+}
+#interface #tl-panel,
+#interface #real-date,
+#interface #show-date-menu,
+#interface #sat-menu {
+    border-top: none;
+}
+#interface #tl-panel,
+#interface #sat-menu {
+    top: 0;
+}
+#interface #tl-panel #show-sat-menu {
+    background-position: 0 -130em;
+}
+#interface #tl-panel #show-sat-menu.checked,
+#interface #tl-panel #show-sat-menu:active {
+    background-position: 0 -135em;
+}
+#interface #tl-panel #show-map-menu {
+    background-position: 0 -30em;
+}
+#interface #tl-panel #show-map-menu.checked,
+#interface #tl-panel #show-map-menu:active {
+    background-position: 0 -35em;
+}
+#interface #tl-panel #show-player-menu {
+    background-position: 0 -90em;
+}
+#interface #tl-panel #show-player-menu.checked,
+#interface #tl-panel #show-player-menu:active {
+    background-position: 0 -95em;
+}
+#interface #tl-panel #show-pointer-menu {
+    background-position: 0 -110em;
+}
+#interface #tl-panel #show-pointer-menu.checked,
+#interface #tl-panel #show-pointer-menu:active {
+    background-position: 0 -115em;
+}
+#interface #bl-panel #show-app-info {
+    background-position: 0 -50em;
+}
+#interface #bl-panel #show-app-info.checked,
+#interface #bl-panel #show-app-info:active {
+    background-position: 0 -55em;
+}
+#interface #show-date-menu,
+#interface #date-menu,
+#interface #br-panel {
+    right: 0;
+    border-right: none;
+}
+#interface #player-menu .button,
+#interface #map-menu .button,
+#interface #br-panel .button {
+    display: inline-block;
+}
+#interface #br-panel #zoom-in {
+    background-position: 0 -100em;
+}
+#interface #br-panel #zoom-in:active {
+    background-position: 0 -105em;
+}
+#interface #br-panel #zoom-out {
+    background-position: 0 -60em;
+}
+#interface #br-panel #zoom-out:active {
+    background-position: 0 -65em;
+}
+#interface #br-panel #fs-mode {
+    background-position: 0 -40em;
+}
+#interface #br-panel #fs-mode.checked,
+#interface #br-panel #fs-mode:active {
+    background-position: 0 -45em;
+}
+#interface #app-info {
+    top: 10%;
+    left: 25%;
+    width: 50%;
+    pointer-events: none;
+    font-size: 1.1em;
+    border-color: #47BEFF;
+    background-color: rgba(0, 0, 0, .95);
+}
+#interface #app-info .header {
+    color: #47BEFF;
+}
+#interface #app-info .section {
+    display: -webkit-flex;
+    -webkit-align-items: top;
+    margin-top: 1em;
+}
+#interface #app-info .content .section > * {
+    display: inline-block;
+}
+#interface #app-info .content .section > *:first-child {
+    width: 24%;
+}
+#interface #app-info .content .section > *:last-child {
+    width: 75%;
+}
+#interface #map-menu {
+    top: 5em;
+}
+#interface #map-menu #two-d {
+    background-position: 0 0;
+}
+#interface #map-menu #two-d.checked,
+#interface #map-menu #two-d:active {
+    background-position: 0 -5em;
+}
+#interface #map-menu #three-d {
+    background-position: 0 -10em;
+}
+#interface #map-menu #three-d.checked,
+#interface #map-menu #three-d:active {
+    background-position: 0 -15em;
+}
+#interface #map-menu #columbus {
+    background-position: 0 -20em;
+}
+#interface #map-menu #columbus.checked,
+#interface #map-menu #columbus:active {
+    background-position: 0 -25em;
+}
+#interface #sat-menu select {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 4px;
+    margin-top: 5px;
+}
+#interface #sat-menu select:first-of-type {
+    margin-bottom: 5px;
+}
+#interface #sat-info {
+    bottom: 6em;
+    right: 1em;
+    width: 21em;
+}
+#interface #sat-info .content > *:not(:first-child),
+#interface #pointer-info .content > *:not(:first-child) {
+    margin-top: 5px;
+    padding: 0 10px;
+}
+#interface #sat-info .section > *,
+#interface #pointer-info .section > * {
+    display: inline-block;
+    font-size: 1.1em;
+    box-sizing: border-box;
+}
+#interface #sat-info .section > *:first-child,
+#interface #pointer-info .section > *:first-child {
+    width: 40%;
+}
+#interface #sat-info .section > *:last-child,
+#interface #pointer-info .section > *:last-child {
+    width: 58%;
+    font-weight: bold;
+    text-align: right;
+}
+#interface #player-menu {
+    top: 6.15em;
+}
+#interface #player-menu .content {
+    text-align: center;
+}
+#interface #player-menu #play {
+    background-position: 0 -80em;
+}
+#interface #player-menu #play.checked,
+#interface #player-menu #play:active {
+    background-position: 0 -85em;
+}
+#interface #player-menu #pause {
+    background-position: 0 -70em;
+}
+#interface #player-menu #pause.checked,
+#interface #player-menu #pause:active {
+    background-position: 0 -75em;
+}
+#interface input[type=range] {
+    height: 1.25em;
+    margin-top: 0.3em;
+    -webkit-appearance: none;
+    background-color: white;
+    outline: none;
+}
+#interface input[type="range"]::-webkit-slider-thumb {
+    width: 0.8em;
+    height: 1.6em;
+    -webkit-appearance: none;
+    background-color: #47BEFF;
+}
+#interface #date-menu {
+    top: calc(2em - 1px);
+}
+#interface #date-menu .fp-container {
+    position: initial !important;
+    background-color: transparent !important;
+    box-shadow: none;
+    font-size: 14px;
+    color: black;
+}
+#interface #date-menu .fp-cal-container {
+    position: initial !important;
+    height: initial !important;
+    background-color: transparent !important;
+    box-shadow: none;
+    color: white !important;
+}
+#interface #date-menu .fp-save {
+    float: none;
+    margin-left: 10px;
+}
+#interface #pointer-menu {
+    top: 11.47em;
+}
+#interface .text-button {
+    height: 1.4em;
+    margin: 0.6em;
+    padding: 0 0.6em;
+    background-color: white;
+    color: black;
+    text-align: center;
+    font-size: 1.25em;
+    line-height: 1.4em;
+}
+#interface .text-button.checked,
+#interface .text-button:active {
+    background-color: #47BEFF;
+}
+#interface #pointer-info {
+    left: 1em;
+    top: 21em;
+    width: 18em;
+}
+@media all and (max-height: 630px) {
+    body {
+         font-size: 12px;
+    }
+    #interface #player-menu {
+        top: 5.3em;
+    }
+    #interface #pointer-menu {
+        top: 11.4em;
+    }
+}
+@media all and (max-height: 535px) {
+    body {
+        font-size: 8px;
+    }
+    #interface #player-menu {
+        top: 3.5em;
+    }
+    #interface #pointer-menu {
+        top: 11.5em;
+    }
+}
